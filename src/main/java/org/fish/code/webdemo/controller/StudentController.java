@@ -11,11 +11,9 @@ import org.fish.code.webdemo.domain.request.StudentRequest;
 import org.fish.code.webdemo.service.IStudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -44,6 +42,46 @@ public class StudentController {
         Long id =  studentService.createStudent(studentBo);
 
         return ResultData.success(id);
+    }
+
+    @GetMapping("/students")
+    public ResultData<List<StudentBo>> getAll() {
+
+        List<StudentBo> studentBos = studentService.getAll();
+        return ResultData.success(studentBos);
+    }
+
+
+    @PutMapping("/students/{id}")
+    public ResultData<StudentBo> updateOne(@PathVariable Long id, @RequestBody StudentRequest request) {
+        log.info("updateOne request: {}", request);
+
+        StudentBo studentBo = new StudentBo();
+        BeanUtils.copyProperties(request,studentBo);
+
+        log.info("Converted Student bo:{}", studentBo);
+
+        Boolean isSuccess = studentService.updateOne(id,studentBo);
+
+        return ResultData.success(isSuccess);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public ResultData<Boolean> deleteOne(@PathVariable Long id) {
+        log.info("deleteOne request: {}", id);
+
+        Boolean isSuccess = studentService.deleteOne(id);
+
+        return ResultData.success(isSuccess);
+    }
+
+    @GetMapping("/students/query")
+    public ResultData<List<StudentBo>> queryByName(@RequestParam String name) {
+        log.info("queryByName request: {}", name);
+
+        List<StudentBo> studentBos = studentService.queryByName(name);
+
+        return ResultData.success(studentBos);
     }
 }
 

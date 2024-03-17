@@ -4,9 +4,11 @@
 package org.fish.code.webdemo.dao.repo.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.fish.code.webdemo.dao.mapper.ext.StudentXMapper;
 import org.fish.code.webdemo.dao.model.Student;
 import org.fish.code.webdemo.dao.mapper.StudentMapper;
 import org.fish.code.webdemo.dao.repo.StudentDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,5 +21,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StudentDaoImpl extends ServiceImpl<StudentMapper, Student> implements StudentDao {
+    @Autowired
+    private StudentXMapper studentXMapper;
 
+
+    public StudentXMapper getStudentXMapper() {
+        return studentXMapper;
+    }
 }

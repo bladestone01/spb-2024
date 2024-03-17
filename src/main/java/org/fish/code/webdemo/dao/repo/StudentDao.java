@@ -3,8 +3,10 @@
  */
 package org.fish.code.webdemo.dao.repo;
 
+import org.fish.code.webdemo.dao.mapper.ext.StudentXMapper;
 import org.fish.code.webdemo.dao.model.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -16,4 +18,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface StudentDao extends IService<Student> {
 
+    public StudentXMapper getStudentXMapper();
 }

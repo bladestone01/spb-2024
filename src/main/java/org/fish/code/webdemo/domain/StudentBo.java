@@ -12,4 +12,5 @@ public class StudentBo {
     private String name;
     private String major;
     private String school;
+    private Integer age;
 }
