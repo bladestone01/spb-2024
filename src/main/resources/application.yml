@@ -1,0 +1,28 @@
+
+server:
+  port: 9090
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #username: mpw:3hzhQGiDZP+uiHRzcJ26gw==
+    password: root1234
+    url: jdbc:mysql://localhost:3306/spbcourse?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    #url: jdbc:p6spy:mysql://localhost:3306/bistu_data?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    #driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: valid
+      logic-delete-value: 0 # ??
+      logic-not-delete-value: 1 # ???
+      id-type: auto  # idType:auto
+  type-enums-package: org.fish.code.webdemo.constant
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml
+  #mapper-default-scope: org/fish/code/webdemo/dao/mapper/**/*Mapper
+  #type-handlers-package: com.baomidou.mybatisplus.extension.handlers,org.spb.course.dao.mybatis.handler
